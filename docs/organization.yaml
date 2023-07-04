@@ -1,0 +1,132 @@
+paths:
+  /organization/create:
+    post:
+      summary: Create new organization
+      description: Create new organization for mindslab
+      tags:
+        - Organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                  example: 'test organization'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/User'
+  /organization/list:
+    get:
+      summary: Get all organizations
+      description: Get all organizations in mindslab
+      tags:
+        - Organization
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/User'
+  /organization/detail/{organization_id}:
+    get:
+      summary: Get organization
+      description: Get organization detail information
+      tags:
+        - Organization
+      parameters:
+        - in: 'path'
+          name: 'organization_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/User'
+  /organization/update/{organization_id}:
+    put:
+      summary: Update organization
+      description: Update organization
+      tags:
+        - Organization
+      parameters:
+        - in: 'path'
+          name: 'organization_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'test@test.com'
+                password:
+                  type: string
+                  example: 'tes123TES!@#'
+                password_confirm:
+                  type: string
+                  example: 'tes123TES!@#'
+                phone:
+                  type: string
+                  example: '+621123456789'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/User'
+  /organization/delete/{organization_id}:
+    delete:
+        summary: Delete organization
+        description: Delete organization
+        tags:
+          - Organization
+        parameters:
+          - in: 'path'
+            name: 'organization_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Removed post with id 2"
+    
+  

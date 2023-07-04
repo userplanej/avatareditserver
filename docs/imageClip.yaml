@@ -1,0 +1,147 @@
+paths:
+  /imageclip/create:
+    post:
+      summary: Create new Image Clip
+      description: Create new Image Clip for mindslab
+      tags:
+        - Image Clip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                package_id:
+                  type: integer
+                  example: 1
+                background_type:
+                  type: string
+                  example: 'image'
+                html5_script:
+                  type: text
+                  example: 'test html script'
+                html5_dir:
+                  type: string
+                  example: 'test html5 dir'
+                clip_name:
+                  type: string
+                  example: 'test organization'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/ImageClip'
+  /imageclip/list:
+    get:
+      summary: Get all Image Clip
+      description: Get all Image Clip in mindslab
+      tags:
+        - Image Clip
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImageClip'
+  /imageclip/detail/{clip_id}:
+    get:
+      summary: Get Image Clip
+      description: Get Image Clip detail information
+      tags:
+        - Image Clip
+      parameters:
+        - in: 'path'
+          name: 'clip_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImageClip'
+  /imageclip/update/{clip_id}:
+    put:
+      summary: Update Image Clip
+      description: Update Image Clip
+      tags:
+        - Image Clip
+      parameters:
+        - in: 'path'
+          name: 'clip_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                package_id:
+                  type: integer
+                  example: 1
+                background_type:
+                  type: string
+                  example: 'image'
+                html5_script:
+                  type: text
+                  example: 'test html script'
+                html5_dir:
+                  type: string
+                  example: 'test html5 dir'
+                clip_name:
+                  type: string
+                  example: 'test organization'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/ImageClip'
+  /imageclip/delete/{clip_id}:
+    delete:
+        summary: Delete Image Clip
+        description: Delete Image Clip
+        tags:
+          - Image Clip
+        parameters:
+          - in: 'path'
+            name: 'clip_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Image clip Deleted Successfully'"
+    
+  

@@ -1,0 +1,36 @@
+paths:
+  /s3-images/mindslab:
+    post:
+      summary: Upload images
+      description: Upload images to s3 bucket
+      tags:
+        - S3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                images:
+                  type: files
+      responses:
+        200:
+          description: Request success
+  /s3-images/mindslab/delete:
+    post:
+      summary: Delete images
+      description: Delete images from s3 bucket
+      tags:
+        - S3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: text
+                  example: https://wipi.s3.ap-northeast-2.amazonaws.com/profilePicture/profilePicture.png
+      responses:
+        200:
+          description: Request success

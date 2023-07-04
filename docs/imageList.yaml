@@ -1,0 +1,135 @@
+paths:
+  /imagelist/create:
+    post:
+      summary: Create new Image
+      description: Create new Image for mindslab
+      tags:
+        - Image List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image_id:
+                  type: integer
+                  example: 1
+                image_name:
+                  type: string
+                  example: 'image'
+                image_dir:
+                  type: text
+                  example: 'test image dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/ImageList'
+  /imagelist/list:
+    get:
+      summary: Get all Image
+      description: Get all Image in mindslab
+      tags:
+        - Image List
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImageList'
+  /imagelist/detail/{image_id}:
+    get:
+      summary: Get Image
+      description: Get Image detail information
+      tags:
+        - Image List
+      parameters:
+        - in: 'path'
+          name: 'image_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImageList'
+  /imagelist/update/{image_id}:
+    put:
+      summary: Update Image
+      description: Update Image
+      tags:
+        - Image List
+      parameters:
+        - in: 'path'
+          name: 'image_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image_id:
+                  type: integer
+                  example: 1
+                image_name:
+                  type: string
+                  example: 'image'
+                image_dir:
+                  type: text
+                  example: 'test image dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/ImageList'
+  /imagelist/delete/{image_id}:
+    delete:
+        summary: Delete Image
+        description: Delete Image
+        tags:
+          - Image List
+        parameters:
+          - in: 'path'
+            name: 'image_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Image Deleted Successfully'"
+    
+  

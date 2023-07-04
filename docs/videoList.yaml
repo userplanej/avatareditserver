@@ -1,0 +1,135 @@
+paths:
+  /videolist/create:
+    post:
+      summary: Create new Shape
+      description: Create new Shape for mindslab
+      tags:
+        - Video
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: integer
+                  example: 1
+                video_name:
+                  type: string
+                  example: 'test video name'
+                video_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/VideoList'
+  /videolist/list:
+    get:
+      summary: Get all Shapes
+      description: Get all Shapes in mindslab
+      tags:
+        - Video
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/VideoList'
+  /videolist/detail/{video_id}:
+    get:
+      summary: Get Shape
+      description: Get Shape detail information
+      tags:
+        - Video
+      parameters:
+        - in: 'path'
+          name: 'video_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/VideoList'
+  /videolist/update/{video_id}:
+    put:
+      summary: Update Shape
+      description: Update Shape
+      tags:
+        - Video
+      parameters:
+        - in: 'path'
+          name: 'video_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: integer
+                  example: 1
+                video_name:
+                  type: string
+                  example: 'test video name'
+                video_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/VideoList'
+  /videolist/delete/{video_id}:
+    delete:
+        summary: Delete Shape
+        description: Delete Shape
+        tags:
+          - Video
+        parameters:
+          - in: 'path'
+            name: 'video_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Shape Deleted Successfully'"
+    
+  

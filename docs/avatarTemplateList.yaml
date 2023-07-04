@@ -1,0 +1,129 @@
+paths:
+  /avatartemplate/create:
+    post:
+      summary: Create new Avatar
+      description: Create new Avatar for mindslab
+      tags:
+        - Avatar Template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                avatar_name:
+                  type: string
+                  example: 'test avatar'
+                avatar_dir:
+                  type: string
+                  example: 'test avatar dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/AvatarTemplate'
+  /avatartemplate/list:
+    get:
+      summary: Get all Avatar Templates
+      description: Get all Avatar Templates in mindslab
+      tags:
+        - Avatar Template
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/AvatarTemplate'
+  /avatartemplate/detail/{avatar_id}:
+    get:
+      summary: Get Avatar Template
+      description: Get Avatar Template detail information
+      tags:
+        - Avatar Template
+      parameters:
+        - in: 'path'
+          name: 'avatar_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/AvatarTemplate'
+  /avatartemplate/update/{avatar_id}:
+    put:
+      summary: Update Avatar Template
+      description: Update Avatar Template
+      tags:
+        - Avatar Template
+      parameters:
+        - in: 'path'
+          name: 'avatar_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                avatar_name:
+                  type: string
+                  example: 'test avatar'
+                avatar_dir:
+                  type: string
+                  example: 'test avatar dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/AvatarTemplate'
+  /avatartemplate/delete/{avatar_id}:
+    delete:
+        summary: Delete Avatar Template
+        description: Delete Avatar Template
+        tags:
+          - Avatar Template
+        parameters:
+          - in: 'path'
+            name: 'avatar_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Avatar template Deleted Successfully"
+    
+  

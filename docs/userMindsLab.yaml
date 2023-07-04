@@ -1,0 +1,168 @@
+paths:
+  /userMindsLab/create:
+    post:
+      summary: Create new user
+      description: Create new user for mindslab
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'test@test.com'
+                password:
+                  type: string
+                  example: 'tes123TES!@#'
+                password_confirm:
+                  type: string
+                  example: 'tes123TES!@#'
+                phone:
+                  type: string
+                  example: '+621123456789'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/User'
+  /userMindsLab/list:
+    get:
+      summary: Get all users
+      description: Get all users in mindslab
+      tags:
+        - User
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/User'
+  /userMindsLab/detail/{user_id}:
+    get:
+      summary: Get user
+      description: Get user mindslab detail information
+      tags:
+        - User
+      parameters:
+        - in: 'path'
+          name: 'user_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/User'
+  /userMindsLab/update/{user_id}:
+    put:
+      summary: Update user
+      description: Update user
+      tags:
+        - User
+      parameters:
+        - in: 'path'
+          name: 'user_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'test@test.com'
+                password:
+                  type: string
+                  example: 'tes123TES!@#'
+                password_confirm:
+                  type: string
+                  example: 'tes123TES!@#'
+                phone:
+                  type: string
+                  example: '+621123456789'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/User'
+  /userMindsLab/delete/{user_id}:
+    delete:
+        summary: Delete user
+        description: Delete user
+        tags:
+          - User
+        parameters:
+          - in: 'path'
+            name: 'user_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "User Deleted Successfully"
+  /userMindsLab/signIn:
+    post:
+      summary: User Sign in
+      description: Sign in to mindslab
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'test@test.com'
+                password:
+                  type: string
+                  example: 'tes123TES!@#'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/User'

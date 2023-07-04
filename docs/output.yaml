@@ -1,0 +1,141 @@
+paths:
+  /output/create:
+    post:
+      summary: Create new Video
+      description: Create new Video for mindslab
+      tags:
+        - Output
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: integer
+                  example: 1
+                clip_id:
+                  type: integer
+                  example: 1
+                user_id:
+                  type: integer
+                  example: 1
+                video_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/Output'
+  /output/list:
+    get:
+      summary: Get all Videos
+      description: Get all Videos in mindslab
+      tags:
+        - Output
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/Output'
+  /output/detail/{video_id}:
+    get:
+      summary: Get Video
+      description: Get Video detail information
+      tags:
+        - Output
+      parameters:
+        - in: 'path'
+          name: 'video_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/Output'
+  /output/update/{video_id}:
+    put:
+      summary: Update Video
+      description: Update Video
+      tags:
+        - Output
+      parameters:
+        - in: 'path'
+          name: 'video_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                video_id:
+                  type: integer
+                  example: 1
+                clip_id:
+                  type: integer
+                  example: 1
+                user_id:
+                  type: integer
+                  example: 1
+                video_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/Output'
+  /output/delete/{video_id}:
+    delete:
+        summary: Delete Image
+        description: Delete Image
+        tags:
+          - Output
+        parameters:
+          - in: 'path'
+            name: 'video_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Video Deleted Successfully'"
+    
+  

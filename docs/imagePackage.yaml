@@ -1,0 +1,138 @@
+paths:
+  /imagepackage/create:
+    post:
+      summary: Create new Image Package
+      description: Create new Image Package for mindslab
+      tags:
+        - Image Package
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                package_id:
+                  type: integer
+                  example: 1
+                clip_id:
+                  type: integer
+                  example: 1
+                user_id:
+                  type: integer
+                  example: 1
+                image_dir:
+                  type: text
+                  example: 'test image dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/ImagePackage'
+  /imagepackage/list:
+    get:
+      summary: Get all Image Package
+      description: Get all Image Package in mindslab
+      tags:
+        - Image Package
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImagePackage'
+  /imagepackage/detail/{package_id}:
+    get:
+      summary: Get Image Package
+      description: Get Image Package detail information
+      tags:
+        - Image Package
+      parameters:
+        - in: 'path'
+          name: 'package_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ImagePackage'
+  /imagepackage/update/{package_id}:
+    put:
+      summary: Update Image Package
+      description: Update Image Package
+      tags:
+        - Image Package
+      parameters:
+        - in: 'path'
+          name: 'package_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                package_id:
+                  type: integer
+                  example: 1
+                image_name:
+                  type: string
+                  example: 'image'
+                image_dir:
+                  type: text
+                  example: 'test image dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/ImagePackage'
+  /imagepackage/delete/{package_id}:
+    delete:
+        summary: Delete Image
+        description: Delete Image
+        tags:
+          - Image Package
+        parameters:
+          - in: 'path'
+            name: 'package_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Image Deleted Successfully'"
+    
+  

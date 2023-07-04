@@ -1,0 +1,135 @@
+paths:
+  /shapelist/create:
+    post:
+      summary: Create new Shape
+      description: Create new Shape for mindslab
+      tags:
+        - Shape
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shape_id:
+                  type: integer
+                  example: 1
+                shape_name:
+                  type: string
+                  example: 'test shape name'
+                shape_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    $ref: '#/components/schemas/ShapeList'
+  /shapelist/list:
+    get:
+      summary: Get all Shapes
+      description: Get all Shapes in mindslab
+      tags:
+        - Shape
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ShapeList'
+  /shapelist/detail/{shape_id}:
+    get:
+      summary: Get Shape
+      description: Get Shape detail information
+      tags:
+        - Shape
+      parameters:
+        - in: 'path'
+          name: 'shape_id'
+      responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    counts:
+                      type: integer
+                      example: 1
+                    rows:
+                      type: array
+                      items:
+                        - $ref: '#/components/schemas/ShapeList'
+  /shapelist/update/{shape_id}:
+    put:
+      summary: Update Shape
+      description: Update Shape
+      tags:
+        - Shape
+      parameters:
+        - in: 'path'
+          name: 'shape_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shape_id:
+                  type: integer
+                  example: 1
+                shape_name:
+                  type: string
+                  example: 'test shape name'
+                shape_dir:
+                  type: string
+                  example: 'test video dir'
+      responses:
+        200:
+          description: Request success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  post:
+                    type: object
+                    $ref: '#/components/schemas/ShapeList'
+  /shapelist/delete/{shape_id}:
+    delete:
+        summary: Delete Shape
+        description: Delete Shape
+        tags:
+          - Shape
+        parameters:
+          - in: 'path'
+            name: 'shape_id'
+        responses:
+          200:
+            description: Request success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Shape Deleted Successfully'"
+    
+  
